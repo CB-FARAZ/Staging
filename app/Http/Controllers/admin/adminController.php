@@ -22,7 +22,7 @@ class adminController extends Controller
             'email' => 'required|max:50',
             'password' => 'required|max:50',
             'role' => 'required|max:255',
-            'phone_number' => 'required|max:15',
+            'phone_number' => 'required|min:15',
             'status' => 'required|max:2',
 
         ]);

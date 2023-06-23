@@ -7,20 +7,14 @@
 
 
     @if (Session::has('message'))
-        <div
-
-            class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative duration-100') }}"
-
-            role="alert">
-
+        <div id="success-message" class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}" role="alert">
             <span class="block sm:inline">{{ Session::get('message') }}</span>
-
         </div>
-
     @endif
 
-        <div class="mx-auto max-w-270">
-    <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+
+    <div class="mx-auto max-w-270">
+        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
             <div
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
@@ -42,8 +36,12 @@
                                 Personal Information
                             </h3>
                         </div>
+                        <a href="{{route('admin.profile' , ['id' => $user->id])}}">
+
+                        </a>
                         <div class="p-7 bg-slate-300">
-                            <form action="{{ route('admin.update' , ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.update') }}" method="POST"
+                                  enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                                     <div class="w-full sm:w-1/2">
@@ -170,26 +168,26 @@
                                 @enderror
 
 
-{{--                                <div class="mt-4">--}}
-{{--                                    <label--}}
-{{--                                        class="mb-3 block text-md font-semibold text-black"--}}
-{{--                                        for="phone"--}}
-{{--                                    >Phone Number</label--}}
-{{--                                    >--}}
-{{--                                    <input--}}
-{{--                                        class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-medium text-black focus:border-primary focus-visible:outline-none px-4"--}}
-{{--                                        type="tel"--}}
-{{--                                        name="phone"--}}
-{{--                                        id="phone"--}}
-{{--                                        value=""--}}
-{{--                                        autocomplete="phone" placeholder="+971 56 789 0124" aria-label="93461409"--}}
-{{--                                    />--}}
-{{--                                </div>--}}
-{{--                                @error('phone')--}}
+                                {{--                                <div class="mt-4">--}}
+                                {{--                                    <label--}}
+                                {{--                                        class="mb-3 block text-md font-semibold text-black"--}}
+                                {{--                                        for="phone"--}}
+                                {{--                                    >Phone Number</label--}}
+                                {{--                                    >--}}
+                                {{--                                    <input--}}
+                                {{--                                        class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-medium text-black focus:border-primary focus-visible:outline-none px-4"--}}
+                                {{--                                        type="tel"--}}
+                                {{--                                        name="phone"--}}
+                                {{--                                        id="phone"--}}
+                                {{--                                        value=""--}}
+                                {{--                                        autocomplete="phone" placeholder="+971 56 789 0124" aria-label="93461409"--}}
+                                {{--                                    />--}}
+                                {{--                                </div>--}}
+                                {{--                                @error('phone')--}}
 
-{{--                                <div class="mt-2 text-sm text-red-500">{{ $message }}</div>--}}
+                                {{--                                <div class="mt-2 text-sm text-red-500">{{ $message }}</div>--}}
 
-{{--                                @enderror--}}
+                                {{--                                @enderror--}}
 
 
                                 <div class="mt-12">
@@ -216,7 +214,7 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
 </main>
 
@@ -229,10 +227,19 @@
     </p>
 
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    setTimeout(function() {
+        $('#success-message').fadeOut('slow');
+    }, 3000);
+</script>
+
 <script>
     var phoneInput = document.getElementById('phone');
 
-    phoneInput.addEventListener('input', function(e) {
+    phoneInput.addEventListener('input', function (e) {
         var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,4})/);
         e.target.value = !x[2] ? '+' + x[1] : '+' + x[1] + ' ' + x[2] + ' ' + x[3] + (x[4] ? ' ' + x[4] : '');
     });

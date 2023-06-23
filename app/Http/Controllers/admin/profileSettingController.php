@@ -4,10 +4,9 @@ namespace App\Http\Controllers\admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Auth;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class profileSettingController extends Controller
@@ -27,7 +26,7 @@ class profileSettingController extends Controller
             'email' => 'required|email',
         ]);
 
-        $user = new User();
+        $user = Auth::user();
 
         $user->name = $request->input('name');
 
@@ -39,15 +38,16 @@ class profileSettingController extends Controller
 
 
         Session::flash('message', 'Successfully Updated the User Profile.');
+
         Session::flash('alert-class', 'bg-green-100 border border-green-400 px-4 py-3 rounded relative duration-100');
+
         return redirect()->route('admin.profile');
     }
 }
 
 
-//            'phone' => 'required',
+//'phone' => 'required',
 
-//        $phone = substr($request->input('phone'), 0, 15);
+//$phone = substr($request->input('phone'), 0, 15);
 
-
-//        $user->phone_number = $phone;
+//$user->phone_number = $phone;

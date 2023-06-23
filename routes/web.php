@@ -43,10 +43,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
 
-
-    // Admin Setting
+    // View Admin Setting
 
     Route::get('profile/setting', [profileSettingController::class, 'adminProfile'])->name('admin.profile');
+
+    // Update Admin Setting
 
     Route::post('update', [profileSettingController::class, 'adminProfileupdate'])->name('admin.update');
 
@@ -62,12 +63,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('client', [clientController::class, 'index'])->name('client.index');
 
-    // Create Client
+    // View Create Client
 
     Route::get('create/client', [adminController::class, 'index'])->name('create.index');
 
-    Route::post('update/client', [adminController::class, 'store'])->name('client.store');
+    // Update Create Client
 
+    Route::post('update/client', [adminController::class, 'store'])->name('client.store');
 
 
 });
