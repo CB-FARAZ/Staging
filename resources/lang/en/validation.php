@@ -163,10 +163,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'attribute' => [
+            'email.required' => 'We need to know your e-mail address',
+            'name.required' => 'We need to know your name',
+            'password.required' => 'We need to know your password',
+            'phone_number.required' => 'We need to know your phone number',
+
 
         ],
+
     ],
 
     /*

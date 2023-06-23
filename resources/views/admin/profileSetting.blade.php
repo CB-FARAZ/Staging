@@ -7,7 +7,7 @@
 
 
     @if (Session::has('message'))
-        <div id="success-message" class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}" role="alert">
+        <div id="success-message" class="{{ Session::get('alert-class', 'mt-8 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}" role="alert">
             <span class="block sm:inline">{{ Session::get('message') }}</span>
         </div>
     @endif
@@ -168,26 +168,26 @@
                                 @enderror
 
 
-                                {{--                                <div class="mt-4">--}}
-                                {{--                                    <label--}}
-                                {{--                                        class="mb-3 block text-md font-semibold text-black"--}}
-                                {{--                                        for="phone"--}}
-                                {{--                                    >Phone Number</label--}}
-                                {{--                                    >--}}
-                                {{--                                    <input--}}
-                                {{--                                        class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-medium text-black focus:border-primary focus-visible:outline-none px-4"--}}
-                                {{--                                        type="tel"--}}
-                                {{--                                        name="phone"--}}
-                                {{--                                        id="phone"--}}
-                                {{--                                        value=""--}}
-                                {{--                                        autocomplete="phone" placeholder="+971 56 789 0124" aria-label="93461409"--}}
-                                {{--                                    />--}}
-                                {{--                                </div>--}}
-                                {{--                                @error('phone')--}}
+                                                                <div class="mt-4">
+                                                                    <label
+                                                                        class="mb-3 block text-md font-semibold text-black"
+                                                                        for="avatar"
+                                                                    >file</label
+                                                                    >
+                                                                    <input
+                                                                        class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-medium text-black focus:border-primary focus-visible:outline-none px-4"
+                                                                        type="file"
+                                                                        name="avatar"
+                                                                        id="avatar"
+                                                                        value=""
+                                                                        autocomplete="phone" placeholder="+971 56 789 0124" aria-label="93461409"
+                                                                    />
+                                                                </div>
+                                                                @error('avatar')
 
-                                {{--                                <div class="mt-2 text-sm text-red-500">{{ $message }}</div>--}}
+                                                                <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
 
-                                {{--                                @enderror--}}
+                                                                @enderror
 
 
                                 <div class="mt-12">

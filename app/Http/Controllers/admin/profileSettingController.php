@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -18,36 +18,35 @@ class profileSettingController extends Controller
         return view('admin.profileSetting', compact('user'));
     }
 
-    public function adminProfileupdate(Request $request): \Illuminate\Http\RedirectResponse
+
+    public function adminProfileupdate(StorePostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'password' => 'required',
-            'email' => 'required|email',
-        ]);
+        $user = $this->getAuthenticatable($request);
 
-        $user = Auth::user();
-
-        $user->name = $request->input('name');
-
-        $user->email = $request->input('email');
-
-        $user->password = bcrypt($request->input('password'));
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('avatar', $filename);
+            $user->avatar = $filename;
+        }
 
         $user->save();
 
-
-        Session::flash('message', 'Successfully Updated the User Profile.');
-
-        Session::flash('alert-class', 'bg-green-100 border border-green-400 px-4 py-3 rounded relative duration-100');
-
+        Session::flash('message', 'Successfully updated the user profile.');
         return redirect()->route('admin.profile');
     }
+
+
+    public function getAuthenticatable(StorePostRequest $request): ?\Illuminate\Contracts\Auth\Authenticatable
+    {
+        $user = Auth::user();
+        $user->update($request->only(['name', 'email', 'avatar']));
+        $user->password = bcrypt($request->input('password'));
+        return $user;
+
+    }
+
 }
 
 
-//'phone' => 'required',
 
-//$phone = substr($request->input('phone'), 0, 15);
-
-//$user->phone_number = $phone;

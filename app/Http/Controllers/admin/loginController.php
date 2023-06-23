@@ -25,10 +25,15 @@ class loginController extends Controller
         $attributes = $request->validate([
 
             'email' => 'required|max:50',
-
             'password' => 'required|max:255',
 
+
+        ],
+            ['email' => 'We need to know your email address',
+            'password' => 'We need to know your password'
+
         ]);
+
 
         $user = User::where('email', $attributes['email'])->first();
 

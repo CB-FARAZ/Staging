@@ -5,7 +5,7 @@
 </title>
 
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,14 @@
             $("#action-btn").click(function () {
                 $("#dropdown-menu").toggle();
             });
+
+            $(document).click(function (event) {
+                if (!$(event.target).closest("#action-btn").length && !$(event.target).closest("#dropdown-menu").length) {
+                    $("#dropdown-menu").hide();
+                }
+            });
         });
+
     </script>
 </head>
 
@@ -75,7 +82,7 @@
                 </div>
             </td>
         </tr>
-        <!-- Repeat the above row for each client in your data -->
+      
         </tbody>
     </table>
 </div>
@@ -98,7 +105,7 @@
 <script>
     var phoneInput = document.getElementById('phone');
 
-    phoneInput.addEventListener('input', function(e) {
+    phoneInput.addEventListener('input', function (e) {
         var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,4})/);
         e.target.value = !x[2] ? '+' + x[1] : '+' + x[1] + ' ' + x[2] + ' ' + x[3] + (x[4] ? ' ' + x[4] : '');
     });
