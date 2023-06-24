@@ -23,12 +23,7 @@ class profileSettingController extends Controller
     {
         $user = $this->getAuthenticatable($request);
 
-        if ($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('avatar', $filename);
-            $user->avatar = $filename;
-        }
+        $this->fileUpload($request, $user);
 
         $user->save();
 
@@ -45,6 +40,22 @@ class profileSettingController extends Controller
         return $user;
 
     }
+
+    /**
+     * @param StorePostRequest $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $user
+     * @return void
+     */
+    public function fileUpload(StorePostRequest $request, ?\Illuminate\Contracts\Auth\Authenticatable $user): void
+    {
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('avatar', $filename);
+            $user->avatar = $filename;
+        }
+    }
+
 
 }
 

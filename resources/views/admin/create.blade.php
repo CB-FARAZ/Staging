@@ -41,7 +41,7 @@
 
                         </div>
                         <div class="p-7 bg-slate-300">
-                            <form action="{{ route('client.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('client.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                                     <div class="w-full sm:w-1/2">
@@ -220,28 +220,27 @@
                                         </div>
                                     </div>
 
-{{--                                    <div class="w-full sm:w-1/2 mx-2">--}}
-{{--                                        <label--}}
-{{--                                            class="mb-3 block text-md font-semibold font-medium text-black"--}}
-{{--                                            for="password"--}}
-{{--                                        >Password</label--}}
-{{--                                        >--}}
-{{--                                        <input--}}
-{{--                                            class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-medium text-black focus:border-primary focus-visible:outline-none px-4"--}}
-{{--                                            type="password"--}}
-{{--                                            name="password"--}}
-{{--                                            id="password"--}}
-{{--                                            placeholder="password"--}}
-{{--                                            value=""--}}
-{{--                                        />--}}
+                                    <div class="w-full sm:w-1/2 mx-2">
 
-{{--                                        @error('password')--}}
+                                        <div class="w-full sm:w-10/12 mx-12">
+                                            <label for="type" class="mb-3 block text-md font-semibold font-medium ">Role</label>
+                                            <select id="type" name="type"
+                                                    class="w-full rounded border   py-3  font-medium text-black bg-white px-10 ">
 
-{{--                                        <div class="mt-2 text-sm text-red-500">{{ $message }}</div>--}}
+                                                <option selected disabled>Select</option>
+                                                <option>admin</option>
+                                                <option>user</option>
 
-{{--                                        @enderror--}}
+                                            </select>
 
-{{--                                    </div>--}}
+                                        </div>
+                                        @error('role')
+
+                                        <div class="mt-2 mx-12 text-sm text-red-500">{{ $message }}</div>
+
+                                        @enderror
+
+                                    </div>
 
                                 </div>
 

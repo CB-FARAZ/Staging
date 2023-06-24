@@ -19,31 +19,23 @@ class adminController extends Controller
 
     public function store(LoginRequest $request)
     {
-//        $attributes = $request->validate([
-//
-//            'name' => 'required|max:20',
-//            'email' => 'required|max:50',
-//            'password' => 'required|max:50',
-//            'role' => 'required|max:255',
-//            'phone_number' => 'required|min:15',
-//            'status' => 'required|max:2',
-//
-//        ]);
-//
-//        $user = User::create([
-//
-//            'name' => $attributes['name'],
-//            'email' => $attributes['email'],
-//            'password' => $attributes['password'],
-//            'role' => $attributes['role'],
-//            'phone_number' => $attributes['phone_number'],
-//            'status' => $attributes['status'],
-//
-//        ]);
-//        $user->save();
-
-
         User::create($request->validated());
+
+        $user = User::create([
+
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'role' => $request->input('role'),
+            'phone_number' => $request->input('phone_number'),
+            'status' => $request->input('status'),
+
+        ]);
+
+         dd($user->email);
+        $user->save();
+
+
 
 
         return redirect()->route('admin.dashboard');

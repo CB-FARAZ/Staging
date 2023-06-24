@@ -31,10 +31,10 @@ class LoginRequest extends FormRequest
    {
 
        return [
-           'email.required' => 'We need to know your e-mail address',
-           'name.required' => 'We need to know your name',
-           'password.required' => 'We need to know your password',
-           'phone_number.required' => 'We need to know your phone number'
+           'email.required' => 'E-mail is required',
+           'name.required' => 'Name is required',
+           'password.required' => 'Password is required',
+           'phone_number.required' => 'Phone number is required',
            ];
    }
 }
