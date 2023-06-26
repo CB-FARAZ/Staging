@@ -11,6 +11,11 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @method static where(string $string, mixed $email)
  * @method static create(array $array)
+ * @property mixed $name
+ * @property mixed $email
+ * @property mixed $password
+ * @property mixed $role
+ * @property mixed $status
  */
 class User extends Authenticatable
 {
@@ -39,8 +44,15 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
     protected $casts = [
+
         'email_verified_at' => 'datetime',
+
         'password' => 'hashed',
+
     ];
+
+
+
 }

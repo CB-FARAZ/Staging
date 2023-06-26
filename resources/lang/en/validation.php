@@ -164,10 +164,6 @@ return [
 
     'custom' => [
         'attribute' => [
-            'email.required' => 'E-mail is required',
-            'name.required' => 'Name is required',
-            'password.required' => 'Password is required',
-            'phone_number.required' => 'Phone number is required',
 
 
         ],
@@ -185,12 +181,7 @@ return [
     |
     */
 
-    'attributes' => [
-        'email',
-        'password',
-        'phone_number',
+    'attributes' => [],
 
-
-    ],
 
 ];

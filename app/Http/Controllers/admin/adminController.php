@@ -4,42 +4,50 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Models\User;
-use Doctrine\Inflector\Rules\French\Rules;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Session;
+
 
 class adminController extends Controller
 {
 
-     public function index()
-     {
-         return view('admin.create');
-     }
-
-    public function store(LoginRequest $request)
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        User::create($request->validated());
-
-        $user = User::create([
-
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'role' => $request->input('role'),
-            'phone_number' => $request->input('phone_number'),
-            'status' => $request->input('status'),
-
-        ]);
-
-         dd($user->email);
-        $user->save();
-
-
-
-
-        return redirect()->route('admin.dashboard');
-
+        return view('admin.create');
     }
+
+    public function store(LoginRequest $request): \Illuminate\Http\RedirectResponse
+    {
+
+        $this->authenticate($request);
+
+        Session::flash('message', 'Successfully created the user profile.');
+
+        return redirect()->route('create.index');
+    }
+
+    /**
+     * @param LoginRequest $request
+     * @return void
+     */
+    public function authenticate(LoginRequest $request): void
+    {
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->role = $request->input('role');
+        $user->status = $request->input('status');
+//        $user->avatar = $request->input('avatar');
+
+        $user->save();
+    }
+
+
+
+
+
 
 }

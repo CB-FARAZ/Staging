@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +20,7 @@ class profileSettingController extends Controller
     }
 
 
-    public function adminProfileupdate(StorePostRequest $request)
+    public function adminProfileupdate(StorePostRequest $request): \Illuminate\Http\RedirectResponse
     {
         $user = $this->getAuthenticatable($request);
 
@@ -32,7 +33,7 @@ class profileSettingController extends Controller
     }
 
 
-    public function getAuthenticatable(StorePostRequest $request): ?\Illuminate\Contracts\Auth\Authenticatable
+    public function getAuthenticatable(StorePostRequest $request): ?Authenticatable
     {
         $user = Auth::user();
         $user->update($request->only(['name', 'email', 'avatar']));
@@ -43,12 +44,12 @@ class profileSettingController extends Controller
 
     /**
      * @param StorePostRequest $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable|null $user
+     * @param Authenticatable|null $user
      * @return void
      */
-    public function fileUpload(StorePostRequest $request, ?\Illuminate\Contracts\Auth\Authenticatable $user): void
+    public function fileUpload(StorePostRequest $request, ?Authenticatable $user): void
     {
-        if ($request->hasFile('avatar')) {
+        if ($request->hasfile('avatar')) {
             $file = $request->file('avatar');
             $filename = $file->getClientOriginalName();
             $file->storeAs('avatar', $filename);
