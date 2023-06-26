@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 
 class orderController extends Controller
 {
@@ -14,6 +13,13 @@ class orderController extends Controller
 
     }
 
+    public function create()
+
+    {
+
+        return view('admin.orderCreate');
+
+    }
 
 //    public function show($id)
 //    {

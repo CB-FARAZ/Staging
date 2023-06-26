@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 // login
 
-Route::get('login', [loginController::class, 'index'])->name('login')->prefix('admin');
+Route::get('admin/login', [loginController::class, 'index'])->name('login')->prefix('admin');
 
 // Login authentication route
 
@@ -42,6 +42,10 @@ Route::group(['prefix' => 'admin'], function () {
     // dashboard route
 
     Route::get('dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
+
+    // Profile View
+
+    Route::get('profile', [profileSettingController::class, 'viewProfile'])->name('admin.viewProfile');
 
     // View Admin Setting
 
@@ -59,17 +63,22 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('orders', [orderController::class, 'index'])->name('orders.index');
 
+    // Order Create
+
+
+    Route::get('orders/create', [orderController::class, 'create'])->name('orders.create');
+
     // Client View
 
     Route::get('client', [clientController::class, 'index'])->name('client.index');
 
     // View Create Client
 
-    Route::get('create/client', [adminController::class, 'index'])->name('create.index');
+    Route::get('create/client', [clientController::class, 'create'])->name('create.index');
 
     // Update Create Client
 
-    Route::post('update/client', [adminController::class, 'store'])->name('client.store');
+    Route::post('update/client', [clientController::class, 'store'])->name('client.store');
 
 
 });

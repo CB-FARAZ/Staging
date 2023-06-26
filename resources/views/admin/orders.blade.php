@@ -1,135 +1,136 @@
+<!DOCTYPE html>
+<html class="h-full">
+<head>
+    <title>Orders | CourierService</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full">
+
+<div class="min-h-full">
 @include('components.x-layout')
-<title>
-    Orders
-</title>
-
-<main>
-    <div
-        class="bg-gray-100 h-full md:flex md:items-center md:justify-between mt-12 ">
-
-        <div class="w-full px-12 py-4 ">
-
-            <div class="text-5xl font-bold underline text-gray-700 px-4 py-2">
-
-                ORDER LIST
-
-
+    <div class="py-10">
+        <header>
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">Orders</h1>
             </div>
-            <br>
+        </header>
+        <main>
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-            <div class="flex space-x-36 mt-4 mx-12">
-                <form
-                    action=""
-                    method="GET"
-                >
 
-                    <label>
-                        <input
+                <!--
+                  This example requires some changes to your config:
 
-                            type="text"
-                            name="text"
-                            class="rounded-xl px-2 py-2 w-64 border mx-2 "
-                            value="{{ request('date') }}"
-                            placeholder="Search for your Order Details"/>
-                    </label>
+                  ```
+                  // tailwind.config.js
+                  module.exports = {
+                    // ...
+                    plugins: [
+                      // ...
+                      require('@tailwindcss/forms'),
+                    ],
+                  }
+                  ```
+                -->
+                <form>
 
-                    <button
+                    <div class="space-y-12">
 
-                        type="submit"
-                        class="bg-green-600 hover:bg-green-400 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
-                        Search
+                        <div class="border-b border-gray-900/10  px-4 sm:px-6 lg:px-8 pb-12">
 
-                    </button>
+                            <div class="sm:flex sm:items-center">
 
-                    <br>
+                                <div class="sm:flex-auto">
+                                    <h1 class="text-base font-semibold leading-7 text-gray-900"></h1>
+                                    <p class="mt-1 text-sm leading-6 text-gray-600">A list of all the users in your account
+                                        including
+                                        their name, title, email and role.</p>
+                                </div>
+                                <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                                    <a href="{{ route('orders.create') }}"
+                                       target="_blank"
+                                       class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Add Order
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="mt-8 flow-root">
+                                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                        <table class="min-w-full divide-y divide-gray-300">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"
+                                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                    Name
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Title
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Email
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Role
+                                                </th>
+                                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                                                    <span class="sr-only">Edit</span>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                                    Lindsay Walton
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
+                                                    Developer
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    lindsay.walton@example.com
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member
+                                                </td>
+                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete<span
+                                                            class="sr-only">, Lindsay Walton</span></a>
+                                                </td>
+                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span
+                                                            class="sr-only">, Lindsay Walton</span></a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- More people... -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                        <button type="submit"
+                                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Save
+                        </button>
+                    </div>
 
 
                 </form>
 
+
             </div>
-            <br>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-xl">
-                    <thead class="text-sm text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Sr.#
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Airway Bill Number
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Client-Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Contact No.
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Customer Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Contact No.
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Pick Up Location
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Drop Of Location
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Order Description
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Packages No.
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Items Amount
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Mode of Service Charge
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Delivered Status
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr class="bg-white border-b bg-gray-500 border-gray-300 text-sm">
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-                        <td class="px-6 py-4 border-l-2">hello world</td>
-
-
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+        </main>
     </div>
-</main>
-<footer>
-
-    <p class="text-center bg-gray-200 text-md dark:bg-gray-300 mt-96 p-12">
-
-        Developed By CruiseBrains.com © 2023
-
-    </p>
-
-</footer>
-
+</div>
+</body>
+</html>

@@ -19,6 +19,13 @@ class profileSettingController extends Controller
         return view('admin.profileSetting', compact('user'));
     }
 
+    public function viewProfile()
+    {
+        $user = Auth::user();
+
+        return view('admin.profileView', compact('user'));
+
+    }
 
     public function adminProfileupdate(StorePostRequest $request): \Illuminate\Http\RedirectResponse
     {
@@ -47,6 +54,7 @@ class profileSettingController extends Controller
      * @param Authenticatable|null $user
      * @return void
      */
+
     public function fileUpload(StorePostRequest $request, ?Authenticatable $user): void
     {
         if ($request->hasfile('avatar')) {

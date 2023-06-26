@@ -22,10 +22,8 @@ class LoginRequest extends FormRequest
             'name' => 'required|max:20',
             'email' => 'required|max:50',
             'password' => 'required|max:50',
-            'role' => 'required|max:255',
-//            'phone_number' => 'required|regex:/(01)[0-9]{9}/',
-            'status' => 'required',
-//            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+//            'type' => 'required',
+            'avatar' => 'required'
         ];
     }
 
@@ -33,13 +31,8 @@ class LoginRequest extends FormRequest
    {
 
        return [
-           'email.required' => 'E-mail is required',
-           'name.required' => 'Name is required',
-           'password.required' => 'Password is required',
-//           'phone_number.required' => 'Phone number is required',
-           'role.required' => 'Role is required',
-           'status.required' => 'Status is required',
-//           'avatar.required' => 'Avatar is required',
+
+            'avatar.required' => 'Avatar must type of image',
 
            ];
    }

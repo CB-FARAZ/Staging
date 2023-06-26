@@ -1,115 +1,109 @@
-@include('components.x-layout')
-
-<title>
-    Client Management
-</title>
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="h-full">
 <head>
+    <title>Clients | CourierService</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        #dropdown-menu {
-            display: none;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            $("#action-btn").click(function () {
-                $("#dropdown-menu").toggle();
-            });
-
-            $(document).click(function (event) {
-                if (!$(event.target).closest("#action-btn").length && !$(event.target).closest("#dropdown-menu").length) {
-                    $("#dropdown-menu").hide();
-                }
-            });
-        });
-
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="h-full">
 
-<body class="bg-gray-100">
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-5xl font-bold mb-4">Client Management</h1>
+<div class="min-h-full">
+@include('components.x-layout')
+    <div class="py-10">
+        <header>
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">Clients</h1>
+            </div>
+        </header>
+        <main>
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-xl mt-6">
-        <thead class="text-sm text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-            <th class="px-6 py-3">Name</th>
-            <th class="px-6 py-3">Email</th>
-            <th class="px-6 py-3">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="px-6 py-4 border-b">{{ auth()->user()->name }}</td>
-            <td class="px-6 py-4 border-b">{{ auth()->user()->email }}</td>
-            <td class="px-6 py-4 border-b">
-                <div class="relative inline-block text-left">
-                    <div>
-                        <button id="action-btn" type="button"
-                                class="action-btn inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Actions
-                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                 fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div id="dropdown-menu"
-                         class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <a href="#"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                               role="menuitem">Login</a>
-                            <a href="{{ route('create.index') }}"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                               role="menuitem" target="_blank`">Add</a>
-                            <a href="#"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                               role="menuitem">Edit</a>
-                            <a href="#"
-                               class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 hover:text-red-900"
-                               role="menuitem">Delete</a>
+                <form>
+
+                    <div class="space-y-12">
+
+                        <div class="border-b border-gray-900/10  px-4 sm:px-6 lg:px-8 pb-12">
+
+                            <div class="sm:flex sm:items-center">
+
+                                <div class="sm:flex-auto">
+                                    <h1 class="text-base font-semibold leading-7 text-gray-900"></h1>
+                                    <p class="mt-1 text-sm leading-6 text-gray-600">A list of all the clients in your account
+                                        including
+                                        their name, email and type.</p>
+                                </div>
+                                <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                                    <a href="{{ route('create.index') }}"
+                                       target="_blank"
+                                       class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Add client
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="mt-8 flow-root">
+                                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                        <table class="min-w-full divide-y divide-gray-300">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"
+                                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                    Name
+                                                </th>
+
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Email
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Type
+                                                </th>
+                                                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                                                    <span class="sr-only">Edit</span>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                                    Lindsay Walton
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
+                                                    Developer
+                                                </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    lindsay.walton@example.com
+                                                </td>
+
+                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete<span
+                                                            class="sr-only">, Lindsay Walton</span></a>
+                                                </td>
+                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span
+                                                            class="sr-only">, Lindsay Walton</span></a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- More people... -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-      
-        </tbody>
-    </table>
+
+                </form>
+
+
+            </div>
+        </main>
+    </div>
 </div>
-
-<div>
-
-    <footer>
-
-        <p class="text-center bg-gray-300 text-md dark:bg-gray-300 mt-96 p-12">
-
-            Developed By CruiseBrains.com © 2023
-
-        </p>
-
-    </footer>
-
-
-</div>
-
-<script>
-    var phoneInput = document.getElementById('phone');
-
-    phoneInput.addEventListener('input', function (e) {
-        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,4})/);
-        e.target.value = !x[2] ? '+' + x[1] : '+' + x[1] + ' ' + x[2] + ' ' + x[3] + (x[4] ? ' ' + x[4] : '');
-    });
-</script>
 </body>
-
 </html>
