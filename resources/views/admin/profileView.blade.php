@@ -7,8 +7,7 @@
             <div class="w-full flex justify-center">
                 <div class="relative">
                     <label for="upload-image">
-                        <img src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true" class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]" alt="Profile Picture">
-                        <div class="absolute -bottom-1 -right-1">
+                        <img src="{{ $user->avatar }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M14.846 7.415a.5.5 0 01.065.638l-2.5 3a.5.5 0 01-.747.063l-1.5-1.5a.5.5 0 11.707-.708l1.146 1.147 2.146-2.147a.5.5 0 01.638-.065z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M9.5 1a8.5 8.5 0 100 17 8.5 8.5 0 000-17zM1 9.5a8.5 8.5 0 1117 0 8.5 8.5 0 01-17 0z" clip-rule="evenodd"/>
@@ -23,17 +22,17 @@
                 <div class="flex justify-center lg:pt-4 pt-8 pb-0">
                     <div class="p-3 text-center">
                         <span class="text-xl font-semibold block  text-slate-400">Name</span>
-                        <span class="text-sm text-slate-400">Jeffrey</span>
+                        <span class="text-sm text-slate-400">{{ $user->name }}</span>
 
                     </div>
                     <div class="p-3 text-center">
-                        <span class="text-xl font-semibold block  text-slate-400">Phone Number</span>
-                        <span class="text-sm text-slate-400">+1233 2323 323 </span>
+                        <span class="text-xl font-semibold block  text-slate-400">Image</span>
+                        <span class="text-sm text-slate-400">{{ $user->avatar }}</span>
                     </div>
 
                     <div class="p-3 text-center">
-                        <span class="text-xl font-semibold block  text-slate-400">E-mail Address</span>
-                        <span class="text-sm text-slate-400">jeffrey@laracasts.com</span>
+                        <span class="text-xl font-semibold block  text-slate-400">E-mail</span>
+                        <span class="text-sm text-slate-400">{{ $user->email }}</span>
                     </div>
                 </div>
             </div>

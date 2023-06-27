@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\clientController;
 use App\Http\Controllers\admin\dashboardController;
+use App\Http\Controllers\admin\editController;
 use App\Http\Controllers\admin\loginController;
 use App\Http\Controllers\admin\logoutController;
 use App\Http\Controllers\admin\orderController;
@@ -65,8 +66,15 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Order Create
 
-
     Route::get('orders/create', [orderController::class, 'create'])->name('orders.create');
+
+    // Order Update
+
+    Route::post('orders/update', [orderController::class, 'store'])->name('orders.update');
+
+    // Order Edit
+
+    Route::get('orders/edit/{id}', [orderController::class, 'edit'])->name('orders.edit');
 
     // Client View
 
@@ -80,6 +88,17 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('update/client', [clientController::class, 'store'])->name('client.store');
 
+    // View Edit  Client
+
+    Route::get('edit/client/{id}', [editController::class, 'index'])->name('client.edit');
+
+    // Updated Client
+
+    Route::match(['put' , 'post'] , '/client/{id}' , [editController::class  , 'update'])->name('client.update');
+
+    // Delete Employee
+
+    Route::delete('delete', [clientController::class, 'destroy'])->name('del');
 
 });
 

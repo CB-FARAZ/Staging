@@ -5,13 +5,17 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class clientController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.client');
+        $users = User::all();
+        return view('admin.client' , compact('users'));
+
     }
 
     public function store(LoginRequest $request): \Illuminate\Http\RedirectResponse
@@ -36,6 +40,7 @@ class clientController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'avatar' => $request->input('avatar'),
         ]);
 
         $this->file($request, $user);
@@ -48,11 +53,6 @@ class clientController extends Controller
         return view('admin.create');
     }
 
-    /**
-     * @param LoginRequest $request
-     * @param $user
-     * @return void
-     */
     public function file(LoginRequest $request, $user): void
     {
         if ($request->hasFile('avatar')) {
@@ -64,13 +64,15 @@ class clientController extends Controller
         }
     }
 
-    public function edit()
+    public function destroy(Request $request)
+
     {
+        User::where('id', $request->id)->delete();
 
+        Session::flash('message', 'Successfully Deleted the User!');
 
-
+        return redirect()->route('client.index');
 
     }
-
 
 }

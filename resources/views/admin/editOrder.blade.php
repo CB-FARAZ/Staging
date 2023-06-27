@@ -9,7 +9,7 @@
 <body class="h-full">
 
 <div class="min-h-full">
-@include('components.x-layout')
+    @include('components.x-layout')
     <div class="py-10">
         <header>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -19,14 +19,7 @@
         <main>
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-                @if (Session::has('message'))
-                    <div id="success-message" class="{{ Session::get('alert-class', 'mt-8 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}" role="alert">
-                        <span class="block sm:inline">{{ Session::get('message') }}</span>
-                    </div>
-                @endif
-
-                <form method="POST" action="{{ route('orders.update') }}" enctype="multipart/form-data">
-                    @csrf
+                <form>
                     <div class="space-y-12">
                         <div class="border-b border-gray-900/10 pb-4">
                             <h2 class="text-base font-semibold leading-7 text-gray-900"></h2>
@@ -42,25 +35,15 @@
                                     <div class="mt-2">
                                         <input type="text" name="client-name" id="client-name" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('client-name')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label for="client-contact" class="block text-sm font-medium leading-6 text-gray-900">Client Contact No</label>
                                     <div class="mt-2">
                                         <div class="mt-2">
-                                            <input type="tel" name="client-contact" id="client-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="client-contact" id="client-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
-                                    @error('client-contact')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -70,25 +53,15 @@
                                             <input type="text" name="customer-name" id="customer-name" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
-                                    @error('customer-name')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label for="customer-contact" class="block text-sm font-medium leading-6 text-gray-900">Customer Contact No</label>
                                     <div class="mt-2">
                                         <div class="mt-2">
-                                            <input type="tel" name="customer-contact" id="customer-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="customer-contact" id="customer-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
-                                    @error('customer-contact')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="col-span-3">
@@ -96,11 +69,6 @@
                                     <div class="mt-2">
                                         <input type="text" name="p-location" id="p-location" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('p-location')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="col-span-2">
@@ -108,11 +76,6 @@
                                     <div class="mt-2">
                                         <input type="text" name="d-location" id="d-location"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('d-location')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="col-span-2">
@@ -120,11 +83,6 @@
                                     <div class="mt-2">
                                         <input type="number" name="package-count" id="package-count" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('package-count')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -132,11 +90,6 @@
                                     <div class="mt-2">
                                         <input type="text" name="package-price" id="package-price"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('package-price')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -144,11 +97,6 @@
                                     <div class="mt-2">
                                         <input type="text" name="order-description" id="order-description"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('order-description')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -156,11 +104,6 @@
                                     <div class="mt-2">
                                         <input type="text" name="mode" id="mode"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    @error('mode')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                                 <div class="sm:col-span-3">
@@ -173,11 +116,6 @@
                                             <option>Unpaid</option>
                                         </select>
                                     </div>
-                                    @error('status')
-
-                                    <div class="mt-2 text-sm text-red-500">{{ $message }}</div>
-
-                                    @enderror
                                 </div>
 
                             </div>
@@ -186,7 +124,8 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        <button  class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
+                        <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                     </div>
                 </form>
 
