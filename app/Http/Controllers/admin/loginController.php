@@ -43,10 +43,6 @@ class loginController extends Controller
                 ->withErrors(['hidden' => 'These credentials do not match our records.']);
         }
 
-//        User::where('email', $request->email)->update([
-//            'status' => 'active'
-//
-//        ]);
 
         auth()->login($user);
 

@@ -5,15 +5,13 @@
     <div class="px-6 py-20">
         <div class="flex flex-wrap justify-center">
             <div class="w-full flex justify-center">
-                <div class="relative">
-                    <label for="upload-image">
-                        <img src="{{ $user->avatar }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M14.846 7.415a.5.5 0 01.065.638l-2.5 3a.5.5 0 01-.747.063l-1.5-1.5a.5.5 0 11.707-.708l1.146 1.147 2.146-2.147a.5.5 0 01.638-.065z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M9.5 1a8.5 8.5 0 100 17 8.5 8.5 0 000-17zM1 9.5a8.5 8.5 0 1117 0 8.5 8.5 0 01-17 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                    </label>
+                <label for="upload-image">
+                    <img src="{{  $user->avatar }}" alt="client_image">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M14.846 7.415a.5.5 0 01.065.638l-2.5 3a.5.5 0 01-.747.063l-1.5-1.5a.5.5 0 11.707-.708l1.146 1.147 2.146-2.147a.5.5 0 01.638-.065z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M9.5 1a8.5 8.5 0 100 17 8.5 8.5 0 000-17zM1 9.5a8.5 8.5 0 1117 0 8.5 8.5 0 01-17 0z" clip-rule="evenodd"/>
+                    </svg>
+                </label>
                     <input id="upload-image" type="file" class="mx-12 hidden">
                 </div>
 

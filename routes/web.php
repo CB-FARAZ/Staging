@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 // login
 
-Route::get('admin/login', [loginController::class, 'index'])->name('login')->prefix('admin');
+Route::get('admin/login', [loginController::class, 'index'])->name('login');
 
 // Login authentication route
 
@@ -37,7 +37,7 @@ Route::post('/login/process', [loginController::class, 'authenticateLoginRequest
 
 //Admin routes
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin' , 'middleware' => 'auth'], function () {
 
 
     // dashboard route
@@ -68,13 +68,21 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('orders/create', [orderController::class, 'create'])->name('orders.create');
 
-    // Order Update
+    // Order Create Process
 
-    Route::post('orders/update', [orderController::class, 'store'])->name('orders.update');
+    Route::post('orders/create/process', [orderController::class, 'storeOrder'])->name('orders.createprocess');
 
     // Order Edit
 
     Route::get('orders/edit/{id}', [orderController::class, 'edit'])->name('orders.edit');
+
+    // Order Update Process
+
+    Route::put('orders/update/process', [orderController::class, 'updateOrder'])->name('orders.update');
+
+    // Order Delete
+
+    Route::delete('orders/delete', [orderController::class, 'destroyOrder'])->name('orders.delete');
 
     // Client View
 

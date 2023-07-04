@@ -64,7 +64,7 @@ class clientController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): \Illuminate\Http\RedirectResponse
 
     {
         User::where('id', $request->id)->delete();

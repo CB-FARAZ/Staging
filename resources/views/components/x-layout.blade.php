@@ -23,12 +23,13 @@
                 <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
 
                     <a href="{{ route('admin.dashboard')  }}"
-                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Dashboard</a>
+                       class="{{ request()->routeIs('admin.dashboard')  ? 'border-indigo-500 text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex  items-center border-b-2 px-1 pt-1 text-sm font-medium' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium'  }}">Dashboard</a>
 
                     <a href="{{ route('client.index')  }}"
-                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Clients</a>
+                       class="{{ request()->routeIs('client.index')  ? 'border-indigo-500 text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex  items-center border-b-2 px-1 pt-1 text-sm font-medium' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium'  }}">Clients</a>
+
                     <a href="{{ route('orders.index')  }}"
-                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
+                       class="{{ request()->routeIs('orders.index')  ? 'border-indigo-500 text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex  items-center border-b-2 px-1 pt-1 text-sm font-medium' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium'  }}"
                     >Orders</a>
 
                 </div>
@@ -59,9 +60,9 @@
                         id="show"
                         role="menu">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a href="{{ route('admin.viewProfile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-                           target="_blank"
-                        >Your Profile</a>
+{{--                        <a href="{{ route('admin.viewProfile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"--}}
+{{--                           target="_blank"--}}
+{{--                        >Your Profile</a>--}}
                         <a href="{{ route('admin.profile') }}"
                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
                            target="_blank"

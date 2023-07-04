@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
 //            $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('client_name');
-            $table->integer('client_contact_no');
+            $table->string('client_contact_no');
             $table->string('customer_name');
-            $table->integer('customer_contact_no');
+            $table->string('customer_contact_no');
             $table->string('pickup_location');
             $table->string('drop_off_location');
             $table->string('order_description');

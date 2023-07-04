@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static find($id)
  * @method static findOrFail($id)
  * @method static create(array $array)
+ * @method static where(string $string, mixed $id)
  * @property mixed $status
  * @property mixed $mode_of_service_charge
  * @property mixed $items_amount

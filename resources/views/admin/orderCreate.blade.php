@@ -9,7 +9,7 @@
 <body class="h-full">
 
 <div class="min-h-full">
-@include('components.x-layout')
+    @include('components.x-layout')
     <div class="py-10">
         <header>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,12 +20,14 @@
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
                 @if (Session::has('message'))
-                    <div id="success-message" class="{{ Session::get('alert-class', 'mt-8 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}" role="alert">
+                    <div id="success-message"
+                         class="{{ Session::get('alert-class', 'mt-8 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}"
+                         role="alert">
                         <span class="block sm:inline">{{ Session::get('message') }}</span>
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('orders.update') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('orders.createprocess') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-12">
                         <div class="border-b border-gray-900/10 pb-4">
@@ -38,9 +40,11 @@
 
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div class="sm:col-span-2">
-                                    <label for="client-name" class="block text-sm font-medium leading-6 text-gray-900">Client name</label>
+                                    <label for="client-name" class="block text-sm font-medium leading-6 text-gray-900">Client
+                                        name</label>
                                     <div class="mt-2">
-                                        <input type="text" name="client-name" id="client-name" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="client-name" id="client-name"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('client-name')
 
@@ -50,10 +54,14 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="client-contact" class="block text-sm font-medium leading-6 text-gray-900">Client Contact No</label>
+                                    <label for="client-contact"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Client Contact
+                                        No</label>
                                     <div class="mt-2">
                                         <div class="mt-2">
-                                            <input type="tel" name="client-contact" id="client-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="tel" name="client-contact" id="client-contact"
+                                                   class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                   placeholder="454 65 465 4564">
                                         </div>
                                     </div>
                                     @error('client-contact')
@@ -64,10 +72,13 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="customer-name" class="block text-sm font-medium leading-6 text-gray-900">Customer name</label>
+                                    <label for="customer-name"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Customer
+                                        name</label>
                                     <div class="mt-2">
                                         <div class="mt-2">
-                                            <input type="text" name="customer-name" id="customer-name" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="customer-name" id="customer-name"
+                                                   class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                     @error('customer-name')
@@ -78,10 +89,14 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="customer-contact" class="block text-sm font-medium leading-6 text-gray-900">Customer Contact No</label>
+                                    <label for="customer-contact"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Customer Contact
+                                        No</label>
                                     <div class="mt-2">
                                         <div class="mt-2">
-                                            <input type="tel" name="customer-contact" id="customer-contact"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="tel" name="customer-contact" id="customer-contact"
+                                                   class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                   placeholder="454 65 465 4564">
                                         </div>
                                     </div>
                                     @error('customer-contact')
@@ -92,9 +107,11 @@
                                 </div>
 
                                 <div class="col-span-3">
-                                    <label for="p-location" class="block text-sm font-medium leading-6 text-gray-900">Pick Up Location</label>
+                                    <label for="p-location" class="block text-sm font-medium leading-6 text-gray-900">Pick
+                                        Up Location</label>
                                     <div class="mt-2">
-                                        <input type="text" name="p-location" id="p-location" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="p-location" id="p-location"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('p-location')
 
@@ -104,9 +121,11 @@
                                 </div>
 
                                 <div class="col-span-2">
-                                    <label for="d-location" class="block text-sm font-medium leading-6 text-gray-900">Drop Off Location</label>
+                                    <label for="d-location" class="block text-sm font-medium leading-6 text-gray-900">Drop
+                                        Off Location</label>
                                     <div class="mt-2">
-                                        <input type="text" name="d-location" id="d-location"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="d-location" id="d-location"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('d-location')
 
@@ -116,9 +135,12 @@
                                 </div>
 
                                 <div class="col-span-2">
-                                    <label for="package-count" class="block text-sm font-medium leading-6 text-gray-900">Packages Count</label>
+                                    <label for="package-count"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Packages
+                                        Count</label>
                                     <div class="mt-2">
-                                        <input type="number" name="package-count" id="package-count" class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="number" name="package-count" id="package-count"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('package-count')
 
@@ -128,9 +150,12 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="package-price" class="block text-sm font-medium leading-6 text-gray-900">Package Price</label>
+                                    <label for="package-price"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Package
+                                        Price</label>
                                     <div class="mt-2">
-                                        <input type="text" name="package-price" id="package-price"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="package-price" id="package-price"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('package-price')
 
@@ -140,9 +165,12 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="order-description" class="block text-sm font-medium leading-6 text-gray-900">Order Description</label>
+                                    <label for="order-description"
+                                           class="block text-sm font-medium leading-6 text-gray-900">Order
+                                        Description</label>
                                     <div class="mt-2">
-                                        <input type="text" name="order-description" id="order-description"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="order-description" id="order-description"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('order-description')
 
@@ -152,9 +180,11 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="mode" class="block text-sm font-medium leading-6 text-gray-900">Mode of Service Charge</label>
+                                    <label for="mode" class="block text-sm font-medium leading-6 text-gray-900">Mode of
+                                        Service Charge</label>
                                     <div class="mt-2">
-                                        <input type="text" name="mode" id="mode"  class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="mode" id="mode"
+                                               class="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                     @error('mode')
 
@@ -164,9 +194,11 @@
                                 </div>
 
                                 <div class="sm:col-span-3">
-                                    <label for="status" class="block text-sm font-medium leading-6 text-gray-900">Order Status</label>
+                                    <label for="status" class="block text-sm font-medium leading-6 text-gray-900">Order
+                                        Status</label>
                                     <div class="mt-2">
-                                        <select id="status" name="status"  class="bg-white px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                        <select id="status" name="status"
+                                                class="bg-white px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                             <option selected disabled>Select</option>
                                             <option>Delivered</option>
                                             <option>Pending</option>
@@ -186,10 +218,12 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        <button  class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
+                        <button
+                            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Create
+                        </button>
                     </div>
                 </form>
-
 
 
             </div>
@@ -200,9 +234,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    setTimeout(function() {
+    setTimeout(function () {
         $('#success-message').fadeOut('slow');
     }, 3000);
+</script>
+
+<script>
+    let phoneInput = document.getElementById('client-contact');
+
+    phoneInput.addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? +x[1] : +x[1] + ' ' + x[2] + ' ' + x[3] + (x[4] ? ' ' + x[4] : '');
+    });
+</script>
+<script>
+    let phoneInput1 = document.getElementById('customer-contact');
+
+    phoneInput1.addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? +x[1] : +x[1] + ' ' + x[2] + ' ' + x[3] + (x[4] ? ' ' + x[4] : '');
+    });
 </script>
 </body>
 </html>

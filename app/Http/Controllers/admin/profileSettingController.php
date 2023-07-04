@@ -19,7 +19,7 @@ class profileSettingController extends Controller
         return view('admin.profileSetting', compact('user'));
     }
 
-    public function viewProfile()
+    public function viewProfile(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $user = Auth::user();
 

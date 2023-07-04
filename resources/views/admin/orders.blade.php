@@ -9,7 +9,7 @@
 <body class="h-full">
 
 <div class="min-h-full">
-@include('components.x-layout')
+    @include('components.x-layout')
     <div class="py-10">
         <header>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -18,22 +18,16 @@
         </header>
         <main>
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                @if (Session::has('message'))
+                    <div id="success-message"
+                         class="{{ Session::get('alert-class', 'mt-8 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative') }}"
+                         role="alert">
+                        <span class="block sm:inline">{{ Session::get('message') }}</span>
+                    </div>
+                @endif
 
+                <br>
 
-                <!--
-                  This example requires some changes to your config:
-
-                  ```
-                  // tailwind.config.js
-                  module.exports = {
-                    // ...
-                    plugins: [
-                      // ...
-                      require('@tailwindcss/forms'),
-                    ],
-                  }
-                  ```
-                -->
                 <form>
 
                     <div class="space-y-12">
@@ -44,9 +38,9 @@
 
                                 <div class="sm:flex-auto">
                                     <h1 class="text-base font-semibold leading-7 text-gray-900"></h1>
-                                    <p class="mt-1 text-sm leading-6 text-gray-600">A list of all the users in your account
-                                        including
-                                        their name, title, email and role.</p>
+                                    <p class="mt-1 text-sm leading-6 text-gray-600">A list of all the orders in your
+                                        account
+                                        </p>
                                 </div>
                                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                                     <a href="{{ route('orders.create') }}"
@@ -90,7 +84,7 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                   Packages Count
+                                                    Packages Count
                                                 </th>
                                                 <th scope="col"
                                                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -108,55 +102,71 @@
                                                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                     Status
                                                 </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Actions
+                                                </th>
 
 
                                             </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200">
-                                            <tr>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                                    Lindsay Walton
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Front-end
-                                                    Developer
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    lindsay.walton@example.com
-                                                </td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member
-                                                </td>
-                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete<span
-                                                            class="sr-only">, Lindsay Walton</span></a>
-                                                </td>
-                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                                    <a href="" class="text-indigo-600 hover:text-indigo-900">Edit<span
-                                                            class="sr-only">, Lindsay Walton</span></a>
-                                                </td>
-                                            </tr>
+                                            @foreach($orders as $order)
 
-                                            <!-- More people... -->
+                                                <tr>
+                                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                                        {{ $order->client_name }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->client_contact_no }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->customer_name }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->customer_contact_no }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->pickup_location }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->drop_off_location }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->packages_no }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->items_amount }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->order_description }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->mode_of_service_charge }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ $order->status }}
+                                                    </td>
+                                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                        <form action="{{ route('orders.delete') }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $order->id }}" name="id">
+                                                            <button type="submit"
+                                                                    class="text-indigo-600 hover:text-indigo-900">Delete
+                                                            </button>
+
+                                                        </form>
+                                                    </td>
+                                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                        <a href="{{ route('orders.edit' , ['id' => $order->id]) }}"
+                                                           class="text-indigo-600 hover:text-indigo-900"
+                                                           target="_blank">Edit</a>
+                                                    </td>
+                                                    @endforeach
+                                                </tr>
+
+                                                <!-- More people... -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -173,5 +183,12 @@
         </main>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    setTimeout(function () {
+        $('#success-message').fadeOut('slow');
+    }, 3000);
+</script>
 </body>
 </html>

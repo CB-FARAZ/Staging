@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Session;
 
 class orderController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
-        return view('admin.orders');
+        $orders = Order::all();
+        return view('admin.orders', compact('orders'));
 
     }
 
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function storeOrder(Request $request): \Illuminate\Http\RedirectResponse
     {
 
         $validatedData = $request->validate([
@@ -52,37 +52,64 @@ class orderController extends Controller
         return redirect()->route('orders.create');
     }
 
-
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
 
     {
+
         return view('admin.orderCreate');
 
     }
 
+    public function destroyOrder(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        Order::where('id',
+            $request->id)->delete();
+
+        Session::flash('message', 'Order deleted successfully');
+
+        return redirect()->route('orders.index');
+    }
 
 
+    public function edit($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $order = Order::find($id);
+        return view('admin.editOrder', compact('order'));
+    }
 
-//
-//    public function edit($id)
-//    {
-//        $order = Order::find($id);
-//        return view('admin.orders.edit', compact('order'));
-//    }
-//
-//    public function update($id)
-//    {
-//        $order = Order::find($id);
-//        $order->update(request()->all());
-//        return redirect()->route('admin.orders.index');
-//    }
-//
-//    public function destroy($id)
-//    {
-//        $order = Order::find($id);
-//        $order->delete();
-//        return redirect()->route('admin.orders.index');
-//    }
 
+    public function updateOrder(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $attributes = $request->validate([
+            'client-name' => 'required',
+            'client-contact' => 'required',
+            'customer-name' => 'required',
+            'customer-contact' => 'required',
+            'p-location' => 'required',
+            'd-location' => 'required',
+            'order-description' => 'required',
+            'package-count' => 'required',
+            'package-price' => 'required',
+            'mode' => 'required',
+            'status' => 'required',
+        ]);
+
+        $order = Order::where('id' , $request->id)->first();
+        $order->client_name = $attributes['client-name'];
+        $order->client_contact_no = $attributes['client-contact'];
+        $order->customer_name = $attributes['customer-name'];
+        $order->customer_contact_no = $attributes['customer-contact'];
+        $order->pickup_location = $attributes['p-location'];
+        $order->drop_off_location = $attributes['d-location'];
+        $order->order_description = $attributes['order-description'];
+        $order->packages_no = $attributes['package-count'];
+        $order->items_amount = $attributes['package-price'];
+        $order->mode_of_service_charge = $attributes['mode'];
+        $order->status = $attributes['status'];
+        $order->save();
+
+        Session::flash('message', 'Successfully updated the order');
+        return redirect()->route('orders.index');
+    }
 
 }
