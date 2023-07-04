@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\clientController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\admin\editController;
@@ -21,15 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    return view('admin/login');
-
-});
 
 // login
 
-Route::get('admin/login', [loginController::class, 'index'])->name('login');
+Route::get('/', [loginController::class, 'index'])->name('login');
 
 // Login authentication route
 
